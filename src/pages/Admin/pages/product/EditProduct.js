@@ -152,15 +152,15 @@ const EditProduct = () => {
         (snapshot) => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log(`progress ${progress} % done`);
+          toast.success(`progress ${progress} % done`);
 
           switch (snapshot.state) {
             case "paused":
-              console.log("upload is paused");
+              toast.success("upload is paused");
 
               break;
             case "running":
-              console.log("upload is running");
+              toast.success("upload is running");
 
               break;
 

@@ -30,7 +30,9 @@ const ProductsList = () => {
   };
 
   const categotyList = async () => {
-    const data = await axios.get("/api/products");
+    const data = await axios.get(
+      "https://backend-toserba.adaptable.app/api/products"
+    );
     const res = data.data.products;
 
     const categories = [...new Set(res.map((product) => product.category))];
