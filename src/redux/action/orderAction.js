@@ -31,9 +31,7 @@ export const getOrders = () => async (dispatch) => {
       type: ADMIN_ORDERS_REQUEST,
     });
 
-    const { data } = await axios.get(
-      "https://backend-toserba.adaptable.app/api/order/admin/orders"
-    );
+    const { data } = await axios.get("/api/order/admin/orders");
 
     dispatch({
       type: ADMIN_ORDERS_SUCCESS,
@@ -62,7 +60,7 @@ export const updateOrder = (id, orderData) => async (dispatch) => {
     };
 
     const { data } = await axios.put(
-      `https://backend-toserba.adaptable.app/api/order/admin/order/update/${id}`,
+      `/api/order/admin/order/update/${id}`,
       orderData,
       config
     );
@@ -86,9 +84,7 @@ export const deleteOrder = (id) => async (dispatch) => {
       type: DELETE_ORDERS_REQUEST,
     });
 
-    const { data } = await axios.delete(
-      `https://backend-toserba.adaptable.app/api/order/admin/order/${id}`
-    );
+    const { data } = await axios.delete(`/api/order/admin/order/${id}`);
 
     dispatch({
       type: DELETE_ORDERS_SUCCESS,
@@ -111,11 +107,7 @@ export const createOrder = (order) => async (dispatch) => {
       headers: { "Content-Type": "application/json" },
     };
 
-    const { data } = await axios.post(
-      "https://backend-toserba.adaptable.app/api/order/create",
-      order,
-      config
-    );
+    const { data } = await axios.post("/api/order/create", order, config);
 
     dispatch({
       type: CREATE_ORDER_SUCCESS,
@@ -137,9 +129,7 @@ export const myOrders = () => async (dispatch) => {
       type: MY_ORDERS_REQUEST,
     });
 
-    const { data } = await axios.get(
-      "https://backend-toserba.adaptable.app/api/order/myorders"
-    );
+    const { data } = await axios.get("/api/order/myorders");
     dispatch({
       type: MY_ORDERS_SUCCESS,
       payload: data.orders,
@@ -159,11 +149,7 @@ export const getOrderDetails = (id) => async (dispatch) => {
       type: ORDER_DETAIL_REQUEST,
     });
 
-    const { data } = await axios.get(
-      id
-        ? `https://backend-toserba.adaptable.app/api/order/detail?id=${id}`
-        : {}
-    );
+    const { data } = await axios.get(id ? `/api/order/detail?id=${id}` : {});
 
     dispatch({
       type: ORDER_DETAIL_SUCCESS,
@@ -192,7 +178,7 @@ export const updatePayment = (id, statusData) => async (dispatch) => {
     };
 
     const { data } = await axios.put(
-      `https://backend-toserba.adaptable.app/api/order/payment/update-status/${id}`,
+      `/api/order/payment/update-status/${id}`,
       statusData,
       config
     );

@@ -70,9 +70,7 @@ const Shipment = () => {
 
   // Get All Provinces
   const getProvinces = async () => {
-    const data = await fetch(
-      "https://backend-toserba.adaptable.app/api/shipment/province"
-    );
+    const data = await fetch("/api/shipment/province");
     const value = await data.json();
     const provinces = value.rajaongkir.results;
 
@@ -81,9 +79,7 @@ const Shipment = () => {
 
   // Get All Cities
   const getProvinceId = async (id) => {
-    const data = await fetch(
-      `https://backend-toserba.adaptable.app/api/shipment/city/${id}`
-    );
+    const data = await fetch(`/api/shipment/city/${id}`);
     const values = await data.json();
     const cities = values.rajaongkir.results;
 
@@ -109,7 +105,7 @@ const Shipment = () => {
       courier !== ""
     ) {
       const data = await fetch(
-        `https://backend-toserba.adaptable.app/api/shipment/cost/${origin}/${destination}/${weight}/${courier}`
+        `/api/shipment/cost/${origin}/${destination}/${weight}/${courier}`
       );
       const values = await data.json();
       const estOngkir = values.rajaongkir.results[0].costs;
@@ -182,7 +178,7 @@ const Shipment = () => {
       };
 
       const response = await axios.post(
-        "https://backend-toserba.adaptable.app/api/payment/transaction",
+        "/api/payment/transaction",
         data,
         config
       );

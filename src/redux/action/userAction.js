@@ -28,11 +28,7 @@ export const updateProfile = (userData) => async (dispatch) => {
 
     const config = { headers: { "Content-Type": "application/json" } };
 
-    const { data } = await axios.put(
-      "https://backend-toserba.adaptable.app/api/user/update",
-      userData,
-      config
-    );
+    const { data } = await axios.put("/api/user/update", userData, config);
 
     dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: data.success });
   } catch (error) {
@@ -51,7 +47,7 @@ export const updatePassword = (userData) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.post(
-      "https://backend-toserba.adaptable.app/api/user//update-password",
+      "/api/user//update-password",
       userData,
       config
     );
@@ -70,7 +66,7 @@ export const getUsers = (name) => async (dispatch) => {
   try {
     dispatch({ type: GET_USERS_REQUEST });
 
-    let link = "https://backend-toserba.adaptable.app/api/user/all";
+    let link = "/api/user/all";
 
     if (name) {
       link += `?name=`;
@@ -92,9 +88,7 @@ export const getUserDetail = (id) => async (dispatch) => {
   try {
     dispatch({ type: USER_DETAIL_REQUEST });
 
-    const { data } = await axios.get(
-      `https://backend-toserba.adaptable.app/api/user/detail/${id}`
-    );
+    const { data } = await axios.get(`/api/user/detail/${id}`);
 
     dispatch({ type: USER_DETAIL_SUCCESS, payload: data.user });
   } catch (error) {
@@ -114,7 +108,7 @@ export const updateUserFromAdmin = (id, userData) => async (dispatch) => {
     };
 
     const { data } = await axios.put(
-      `https://backend-toserba.adaptable.app/api/user/update-user/${id}`,
+      `/api/user/update-user/${id}`,
       userData,
       config
     );
@@ -130,9 +124,7 @@ export const deleteUser = (id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_USER_REQUEST });
 
-    const { data } = await axios.delete(
-      `https://backend-toserba.adaptable.app/api/user/delete/${id}`
-    );
+    const { data } = await axios.delete(`/api/user/delete/${id}`);
 
     dispatch({ type: DELETE_USER_SUCCESS, payload: data.success });
   } catch (error) {

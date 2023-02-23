@@ -21,11 +21,7 @@ export const register = (userData) => async (dispatch) => {
 
     const config = { headers: { "Content-Type": "application/json" } };
 
-    const { data } = await axios.post(
-      "https://backend-toserba.adaptable.app/api/auth/register",
-      userData,
-      config
-    );
+    const { data } = await axios.post("/api/auth/register", userData, config);
 
     dispatch({ type: REGISTER_SUCCESS, payload: data.user });
   } catch (error) {
@@ -43,7 +39,7 @@ export const login = (username, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "https://backend-toserba.adaptable.app/api/auth/login",
+      "/api/auth/login",
       { username, password },
       config
     );
@@ -58,9 +54,7 @@ export const login = (username, password) => async (dispatch) => {
 // logout Handler
 export const logout = () => async (dispatch) => {
   try {
-    const { data } = await axios.get(
-      "https://backend-toserba.adaptable.app/api/auth/logout"
-    );
+    const { data } = await axios.get("/api/auth/logout");
 
     dispatch({ type: LOGOUT_SUCCESS, payload: data.message });
   } catch (error) {
@@ -73,9 +67,7 @@ export const loadUser = () => async (dispatch) => {
   try {
     dispatch({ type: LOAD_USER_REQUEST });
 
-    const { data } = await axios.get(
-      "https://backend-toserba.adaptable.app/api/user/profile"
-    );
+    const { data } = await axios.get("/api/user/profile");
 
     dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
   } catch (error) {
