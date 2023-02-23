@@ -9,7 +9,7 @@ export const addToCart = (id, quantity) => async (dispatch, getState) => {
   // cari produk
 
   const { data } = await axios.get(
-    `https://backend-toserba.adaptable.app//api/product/${id}`
+    `https://backend-toserba.adaptable.app/api/product/${id}`
   );
 
   dispatch({

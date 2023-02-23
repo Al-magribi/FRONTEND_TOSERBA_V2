@@ -24,14 +24,14 @@ export const getAllProducts = (category, name) => async (dispatch) => {
   try {
     dispatch({ type: GET_ALL_PRODUCTS_REQUEST });
 
-    let link = `/api/products`;
+    let link = `https://backend-toserba.adaptable.app/api/products`;
 
     if (category) {
-      link = `/api/products?category=${category}`;
+      link = `https://backend-toserba.adaptable.app/api/products?category=${category}`;
     }
 
     if (name) {
-      link = `/api/products?name=${name}`;
+      link = `https://backend-toserba.adaptable.app/api/products?name=${name}`;
     }
     const { data } = await axios.get(link);
 
@@ -45,7 +45,9 @@ export const getProductDetail = (id) => async (dispatch) => {
   try {
     dispatch({ type: GET_PRODUCT_DETAIL_REQUEST });
 
-    const { data } = await axios.get(`/api/product/${id}`);
+    const { data } = await axios.get(
+      `https://backend-toserba.adaptable.app/api/product/${id}`
+    );
 
     dispatch({ type: GET_PRODUCT_DETAIL_SUCCESS, payload: data.product });
   } catch (error) {
@@ -65,7 +67,7 @@ export const addProducts = (productData) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.post(
-      "/api/admin/product/create",
+      "https://backend-toserba.adaptable.app/api/admin/product/create",
       productData,
       config
     );
@@ -90,7 +92,7 @@ export const updateProducts = (id, productData) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.put(
-      `/api/admin/product/update/${id}`,
+      `https://backend-toserba.adaptable.app/api/admin/product/update/${id}`,
       productData,
       config
     );
@@ -110,7 +112,9 @@ export const deleteProduct = (id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_PRODUCT_REQUEST });
 
-    const { data } = await axios.delete(`/api/admin/product/delete/${id}`);
+    const { data } = await axios.delete(
+      `https://backend-toserba.adaptable.app/api/admin/product/delete/${id}`
+    );
 
     dispatch({
       type: DELETE_PRODUCT_SUCCESS,
@@ -128,7 +132,9 @@ export const deleteAllProduct = () => async (dispatch) => {
   try {
     dispatch({ type: DELETE_ALL_PRODUCTS_REQUEST });
 
-    const { data } = await axios.delete(`/api/admin/product/deleteAll`);
+    const { data } = await axios.delete(
+      `https://backend-toserba.adaptable.app/api/admin/product/deleteAll`
+    );
 
     dispatch({
       type: DELETE_ALL_PRODUCTS_SUCCESS,
